@@ -8,9 +8,7 @@ import java.util.Map;
  * 邮箱：initzf@126.com
  */
 public class Parameter {
-    private static Parameter instance;
     private static Map<String,String> map = new HashMap<>();
-
 
     private static class SingletonHolder {
         private static final Parameter INSTANCE = new Parameter();

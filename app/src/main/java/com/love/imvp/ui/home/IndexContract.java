@@ -15,6 +15,8 @@ public class IndexContract {
     }
 
     interface Present extends BasePresenter{
-        void getPolicyStatus(Map<String,String> map);
+        void getPolicyStatus(Map<String, String> map);
+
+        void sendPv();
     }
 }

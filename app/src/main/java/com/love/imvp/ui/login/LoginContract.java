@@ -7,8 +7,8 @@ import java.util.Map;
 
 /**
  * 作者：zf on 2016/6/12 11:11
- * 邮箱：initzf@126.com
- */
+        * 邮箱：initzf@126.com
+        */
 public class LoginContract {
     interface View extends BaseView<Present> {
         void loginError(String msg);

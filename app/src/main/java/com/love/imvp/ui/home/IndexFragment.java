@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.love.imvp.R;
@@ -13,6 +14,7 @@ import com.love.imvp.base.Parameter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 作者：zf on 2016/6/12 14:09
@@ -25,6 +27,9 @@ public class IndexFragment extends Fragment implements IndexContract.View{
 
     @Bind(R.id.tv_status)
     TextView tvStatus;
+
+    @Bind(R.id.btn_send)
+    Button btnSend;
 
     @Nullable
     @Override
@@ -41,6 +46,11 @@ public class IndexFragment extends Fragment implements IndexContract.View{
 
 
         presenter.getPolicyStatus(Parameter.getInstance().getparaMap());
+    }
+
+    @OnClick(R.id.btn_send)
+    public void sendPv(){
+        presenter.sendPv();
     }
 
 

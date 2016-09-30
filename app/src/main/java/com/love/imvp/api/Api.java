@@ -7,6 +7,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.love.imvp.MainApp;
 import com.love.imvp.utils.NetWorkUtil;
+import com.love.imvp.utils.retrofitplug.FastjsonConverterFactory;
+import com.love.imvp.utils.retrofitplug.HttpLoggingInterceptor;
+import com.love.imvp.utils.retrofitplug.ToStringConverterFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +22,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import rx.schedulers.Schedulers;
 
 public class Api {
 
@@ -35,19 +39,28 @@ public class Api {
         File cacheFile = new File(MainApp.getContext().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
 
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override public void log(String message) {
+                Log.i("retrofit", "log: "+message);
+            }
+        });
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(7676, TimeUnit.MILLISECONDS)
                 .connectTimeout(7676, TimeUnit.MILLISECONDS)
+                .addInterceptor(logging)
                 .addNetworkInterceptor(new HttpCacheInterceptor())
                 .cache(cache)
                 .build();
 
-
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
-
+        //FastjsonConverterFactory
+        //GsonConverterFactory.create(gson)
         retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addConverterFactory(new ToStringConverterFactory())
+                .addConverterFactory(FastjsonConverterFactory.create())
                 .baseUrl(BASE_URL)
                 .build();
         movieService = retrofit.create(ApiService.class);

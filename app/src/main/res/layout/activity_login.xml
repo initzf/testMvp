@@ -21,6 +21,7 @@
             android:background="@drawable/edit_shape_bj"
             android:layout_marginLeft="20dp"
             android:inputType="phone"
+            android:text="13917103046"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/edtName"/>
@@ -44,6 +45,7 @@
             android:background="@drawable/edit_shape_bj"
             android:layout_marginLeft="20dp"
             android:inputType="number"
+            android:text="21212"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/edtCode"/>
@@ -55,6 +57,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:transitionName="startIndex"
         android:text="登录"/>
 
 </LinearLayout>
