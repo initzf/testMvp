@@ -21,7 +21,6 @@
             android:background="@drawable/edit_shape_bj"
             android:layout_marginLeft="20dp"
             android:inputType="phone"
-            android:text="13917103046"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/edtName"/>
@@ -45,7 +44,6 @@
             android:background="@drawable/edit_shape_bj"
             android:layout_marginLeft="20dp"
             android:inputType="number"
-            android:text="21212"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/edtCode"/>
